@@ -82,17 +82,6 @@ class HomeView extends GetView<HomeController> {
                                 Icon(Icons.arrow_drop_down)
                               ],
                             ),
-
-                            /*child: DropdownButton<String>(
-                          value: ,
-                          items: controller.dropdDownList.map((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (_) {},
-                        )*/
                           ),
                           Container(
                             height: 30,
@@ -184,17 +173,6 @@ class HomeView extends GetView<HomeController> {
                             Icon(Icons.arrow_drop_down)
                           ],
                         ),
-
-                        /*child: DropdownButton<String>(
-                            value: ,
-                            items: controller.dropdDownList.map((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            onChanged: (_) {},
-                          )*/
                       ),
                       Container(
                         height: 30,
