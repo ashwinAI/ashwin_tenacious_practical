@@ -26,15 +26,15 @@ class HomeModel {
 }
 
 class HomeData {
-  List<OrderList>? orderList;
+  List<OrderModel>? orderList;
 
   HomeData({this.orderList});
 
   HomeData.fromJson(Map<String, dynamic> json) {
     if (json['order_list'] != null) {
-      orderList = <OrderList>[];
+      orderList = <OrderModel>[];
       json['order_list'].forEach((v) {
-        orderList!.add(new OrderList.fromJson(v));
+        orderList!.add(new OrderModel.fromJson(v));
       });
     }
   }
@@ -48,7 +48,7 @@ class HomeData {
   }
 }
 
-class OrderList {
+class OrderModel {
   String? orderId;
   String? posUserName;
   String? orderType;
@@ -60,19 +60,19 @@ class OrderList {
   String? categoryIds;
   List<SectionData>? sectionData;
 
-  OrderList(
+  OrderModel(
       {this.orderId,
-        this.posUserName,
-        this.orderType,
-        this.tableNo,
-        this.kotId,
-        this.kotStartTime,
-        this.kotEndTime,
-        this.kotStatus,
-        this.categoryIds,
-        this.sectionData});
+      this.posUserName,
+      this.orderType,
+      this.tableNo,
+      this.kotId,
+      this.kotStartTime,
+      this.kotEndTime,
+      this.kotStatus,
+      this.categoryIds,
+      this.sectionData});
 
-  OrderList.fromJson(Map<String, dynamic> json) {
+  OrderModel.fromJson(Map<String, dynamic> json) {
     orderId = json['order_id'];
     posUserName = json['pos_user_name'];
     orderType = json['order_type'];
@@ -114,11 +114,7 @@ class SectionData {
   String? sectionCategoryIds;
   List<ItemData>? itemList;
 
-  SectionData(
-      {this.sectionId,
-        this.sectionName,
-        this.sectionCategoryIds,
-        this.itemList});
+  SectionData({this.sectionId, this.sectionName, this.sectionCategoryIds, this.itemList});
 
   SectionData.fromJson(Map<String, dynamic> json) {
     sectionId = json['section_id'];
@@ -161,18 +157,18 @@ class ItemData {
 
   ItemData(
       {this.categoryId,
-        this.categoryName,
-        this.itemId,
-        this.itemName,
-        this.sizeId,
-        this.sizeName,
-        this.customizationDetails,
-        this.choiceDetails,
-        this.itemStatus,
-        this.quantity,
-        this.cancelQuantity,
-        this.unit,
-        this.weight});
+      this.categoryName,
+      this.itemId,
+      this.itemName,
+      this.sizeId,
+      this.sizeName,
+      this.customizationDetails,
+      this.choiceDetails,
+      this.itemStatus,
+      this.quantity,
+      this.cancelQuantity,
+      this.unit,
+      this.weight});
 
   ItemData.fromJson(Map<String, dynamic> json) {
     categoryId = json['category_id'];

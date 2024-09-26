@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../home_model.dart';
 import 'home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -274,335 +275,354 @@ class HomeView extends GetView<HomeController> {
               Visibility(
                 visible: MediaQuery.of(context).size.width >= 500,
                 child: Expanded(
-                  child: ListView(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.only(left: 20, bottom: 20),
-                    children: [
-                      controller.groupedSections.isNotEmpty
-                          ? Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    SizedBox(
-                                      width: 400,
-                                      child: Center(
-                                        child: Container(
-                                          margin: const EdgeInsets.only(top: 20),
-                                          decoration: const BoxDecoration(
-                                            color: Colors.green,
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(4),
-                                              topRight: Radius.circular(4),
-                                            ),
-                                            border: Border(
-                                              bottom: BorderSide(color: Colors.black, width: 1),
-                                            ),
-                                          ),
-                                          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                                          child: const Text(
-                                            '00:05',
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              wordSpacing: 1.1,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Container(
-                                  width: 400,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      topRight: Radius.circular(10),
-                                    ),
-                                  ),
-                                  padding: const EdgeInsets.symmetric(vertical: 3),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    mainAxisSize: MainAxisSize.min,
+                  child: controller.homeModel != null
+                      ? Padding(
+                          padding: const EdgeInsets.only(left: 18),
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            padding: const EdgeInsets.only(left: 20, bottom: 20),
+                            children: List.generate(
+                              controller.homeModel!.data!.orderList!.length,
+                              (index) {
+                                OrderModel obj = controller.homeModel!.data!.orderList![index];
+                                return Padding(
+                                  padding: const EdgeInsets.only(right: 16),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      const Column(
+                                      Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          Text(
-                                            '#69358',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 13,
-                                            ),
-                                          ),
-                                          Text(
-                                            'Table: 04',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
+                                          SizedBox(
+                                            width: 360,
+                                            child: Center(
+                                              child: Container(
+                                                margin: const EdgeInsets.only(top: 20),
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.green,
+                                                  borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(4),
+                                                    topRight: Radius.circular(4),
+                                                  ),
+                                                  border: Border(
+                                                    bottom: BorderSide(color: Colors.black, width: 1),
+                                                  ),
+                                                ),
+                                                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                                                child: Text(
+                                                  controller.timerList.isEmpty ? '00:00' : controller.timerList[index].value,
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                    wordSpacing: 1.1,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ],
                                       ),
-                                      Container(
-                                        height: 30,
-                                        width: 2,
-                                        color: Colors.white,
-                                      ),
-                                      const Text(
-                                        'KOT-4569',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 13,
-                                        ),
-                                      ),
-                                      Container(
-                                        height: 30,
-                                        width: 2,
-                                        color: Colors.white,
-                                      ),
-                                      const Text(
-                                        'Sujal',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 13,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  width: 400,
-                                  decoration: const BoxDecoration(
-                                    border: Border(
-                                      left: BorderSide(color: Colors.black, width: 1),
-                                      right: BorderSide(color: Colors.black, width: 1),
-                                      bottom: BorderSide(color: Colors.black, width: 1),
-                                    ),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        color: Colors.white,
-                                        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                                        child: const Row(
-                                          children: [
-                                            Text(
-                                              'Qnt',
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                            SizedBox(width: 30),
-                                            Text(
-                                              'Items',
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                            Spacer(),
-                                            Text(
-                                              '08:11 AM',
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        margin: const EdgeInsets.only(bottom: 8),
-                                        width: double.infinity,
-                                        height: 1,
-                                        decoration: BoxDecoration(color: Colors.black.withOpacity(0.7)),
-                                      ),
-                                      Column(
-                                        children: List.generate(
-                                          controller.groupedSections.keys.length,
-                                          (index) {
-                                            String sectionName = controller.groupedSections.keys.elementAt(index);
-                                            List items = controller.groupedSections[sectionName]!;
-                                            return Container(
-                                              margin: const EdgeInsets.only(left: 4, right: 4, bottom: 10),
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Colors.grey.withOpacity(0.2),
-                                                    spreadRadius: 5,
-                                                    blurRadius: 4,
-                                                    offset: const Offset(0, 3),
+                                      Expanded(
+                                        child: Container(
+                                          width: 360,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.black, width: 1),
+                                            borderRadius: const BorderRadius.all(Radius.circular(11)),
+                                          ),
+                                          child: ListView(
+                                            shrinkWrap: true,
+                                            children: [
+                                              Container(
+                                                width: 360,
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(10),
+                                                    topRight: Radius.circular(10),
                                                   ),
-                                                ],
-                                                border: Border.all(color: Colors.grey.withOpacity(0.5), width: 1),
-                                                borderRadius: const BorderRadius.all(
-                                                  Radius.circular(3),
+                                                ),
+                                                padding: const EdgeInsets.symmetric(vertical: 5),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children: [
+                                                    Column(
+                                                      mainAxisSize: MainAxisSize.min,
+                                                      children: [
+                                                        Text(
+                                                          '#${obj.orderId!}',
+                                                          style: const TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 13,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          obj.orderType!.toLowerCase() != 'Dine In'.toLowerCase()
+                                                              ? obj.orderType!
+                                                              : 'Table: ${obj.tableNo}',
+                                                          style: const TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 14,
+                                                            fontWeight: FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Container(
+                                                      height: 30,
+                                                      width: 2,
+                                                      color: Colors.white,
+                                                    ),
+                                                    Text(
+                                                      obj.kotId!,
+                                                      style: const TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 13,
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      height: 30,
+                                                      width: 2,
+                                                      color: Colors.white,
+                                                    ),
+                                                    Text(
+                                                      obj.posUserName!,
+                                                      style: const TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 13,
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
-                                              child: Column(
+                                              Container(
+                                                color: Colors.white,
+                                                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                                                child: Row(
+                                                  children: [
+                                                    const Text(
+                                                      'Qnt',
+                                                      style: TextStyle(
+                                                        fontSize: 16,
+                                                        fontWeight: FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                    const SizedBox(width: 30),
+                                                    const Text(
+                                                      'Items',
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 16,
+                                                        fontWeight: FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                    const Spacer(),
+                                                    Text(
+                                                      DateFormat("hh:mm a").format(DateFormat("MM/dd/yyyy HH:mm:ss").parse(obj.kotStartTime!)),
+                                                      style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 16,
+                                                        fontWeight: FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Container(
+                                                margin: const EdgeInsets.only(bottom: 8),
+                                                width: double.infinity,
+                                                height: 1,
+                                                decoration: BoxDecoration(color: Colors.black.withOpacity(0.7)),
+                                              ),
+                                              Column(
+                                                children: List.generate(
+                                                  obj.sectionData!.length,
+                                                  (index) {
+                                                    SectionData sectionData = obj.sectionData![index];
+                                                    return Container(
+                                                      margin: const EdgeInsets.only(left: 4, right: 4, bottom: 10),
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                            color: Colors.grey.withOpacity(0.2),
+                                                            spreadRadius: 5,
+                                                            blurRadius: 4,
+                                                            offset: const Offset(0, 3),
+                                                          ),
+                                                        ],
+                                                        border: Border.all(color: Colors.grey.withOpacity(0.5), width: 1),
+                                                        borderRadius: const BorderRadius.all(
+                                                          Radius.circular(3),
+                                                        ),
+                                                      ),
+                                                      child: Column(
+                                                        children: [
+                                                          Container(
+                                                            decoration: const BoxDecoration(
+                                                              color: Colors.brown,
+                                                            ),
+                                                            padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 12),
+                                                            margin: const EdgeInsets.only(bottom: 20),
+                                                            child: Text(
+                                                              sectionData.sectionName!.isEmpty ? 'N/A' : sectionData.sectionName!,
+                                                              style: const TextStyle(
+                                                                letterSpacing: 1.1,
+                                                                color: Colors.white,
+                                                                fontSize: 16,
+                                                                fontWeight: FontWeight.w600,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Column(
+                                                            children: List.generate(
+                                                              sectionData.itemList!.length,
+                                                              (index) {
+                                                                ItemData itemData = sectionData.itemList![index];
+                                                                return Column(
+                                                                  children: [
+                                                                    Stack(
+                                                                      children: [
+                                                                        Theme(
+                                                                          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+                                                                          child: ExpansionTile(
+                                                                            trailing: const SizedBox(),
+                                                                            title: Padding(
+                                                                              padding: const EdgeInsets.only(top: 8, left: 2, right: 12, bottom: 8),
+                                                                              child: Row(
+                                                                                children: [
+                                                                                  Text(
+                                                                                    itemData.quantity!,
+                                                                                    style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+                                                                                  ),
+                                                                                  const SizedBox(width: 20),
+                                                                                  Text(
+                                                                                    itemData.itemName!,
+                                                                                    style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                            childrenPadding: const EdgeInsets.only(bottom: 5),
+                                                                            children: List.generate(
+                                                                              6,
+                                                                              (secondIndex) {
+                                                                                return Padding(
+                                                                                  padding: const EdgeInsets.symmetric(horizontal: 18),
+                                                                                  child: Row(
+                                                                                    children: [
+                                                                                      const Text(
+                                                                                        '•',
+                                                                                        style: TextStyle(
+                                                                                          fontSize: 24,
+                                                                                          fontWeight: FontWeight.bold,
+                                                                                        ),
+                                                                                      ),
+                                                                                      const SizedBox(width: 10),
+                                                                                      Text(
+                                                                                        secondIndex == 0
+                                                                                            ? 'Category Name: ${itemData.categoryName}'
+                                                                                            : secondIndex == 1
+                                                                                                ? 'Size Name: ${itemData.sizeName}'
+                                                                                                : secondIndex == 2
+                                                                                                    ? 'Weight: ${itemData.weight}'
+                                                                                                    : secondIndex == 3
+                                                                                                        ? 'Unit: ${itemData.unit}'
+                                                                                                        : secondIndex == 4
+                                                                                                            ? 'Customization Details: ${itemData.customizationDetails}'
+                                                                                                            : 'Choice Details: ${itemData.choiceDetails}',
+                                                                                        style: const TextStyle(
+                                                                                          fontSize: 14,
+                                                                                          fontWeight: FontWeight.w500,
+                                                                                        ),
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
+                                                                                );
+                                                                              },
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        Positioned(
+                                                                          right: 10,
+                                                                          top: 15,
+                                                                          child: Container(
+                                                                            width: 80,
+                                                                            alignment: Alignment.centerRight,
+                                                                            decoration: const BoxDecoration(
+                                                                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                                                                              color: Colors.red,
+                                                                            ),
+                                                                            padding: const EdgeInsets.symmetric(vertical: 4),
+                                                                            child: Center(
+                                                                              child: Text(
+                                                                                itemData.itemStatus!,
+                                                                                style: const TextStyle(
+                                                                                  color: Colors.white,
+                                                                                  fontWeight: FontWeight.w500,
+                                                                                  fontSize: 15,
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                    Container(
+                                                                      height: 1,
+                                                                      width: double.infinity,
+                                                                      color: Colors.grey,
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              },
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
                                                   Container(
+                                                    width: 160,
+                                                    height: 35,
+                                                    margin: const EdgeInsets.only(top: 10, bottom: 20),
                                                     decoration: const BoxDecoration(
-                                                      color: Colors.brown,
+                                                      borderRadius: BorderRadius.all(Radius.circular(2.5)),
+                                                      color: Colors.grey,
                                                     ),
-                                                    padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 12),
-                                                    margin: const EdgeInsets.only(bottom: 20),
-                                                    child: Text(
-                                                      sectionName.isEmpty ? 'N/A' : sectionName,
-                                                      style: const TextStyle(
-                                                        letterSpacing: 1.1,
-                                                        color: Colors.white,
-                                                        fontSize: 16,
-                                                        fontWeight: FontWeight.w600,
+                                                    child: const Center(
+                                                      child: Text(
+                                                        'Pending',
+                                                        style: TextStyle(
+                                                          fontWeight: FontWeight.bold,
+                                                          color: Colors.black,
+                                                          fontSize: 15,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                                  Column(
-                                                    children: List.generate(
-                                                      items.length,
-                                                      (index) {
-                                                        return Column(
-                                                          children: [
-                                                            Stack(
-                                                              children: [
-                                                                Theme(
-                                                                  data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                                                                  child: ExpansionTile(
-                                                                    trailing: const SizedBox(),
-                                                                    title: Padding(
-                                                                      padding: const EdgeInsets.only(top: 8, left: 2, right: 12, bottom: 8),
-                                                                      child: Row(
-                                                                        children: [
-                                                                          Text(
-                                                                            items[index]['quantity'],
-                                                                            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
-                                                                          ),
-                                                                          const SizedBox(width: 20),
-                                                                          Text(
-                                                                            items[index]['itemName'],
-                                                                            style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                    childrenPadding: const EdgeInsets.only(bottom: 5),
-                                                                    children: List.generate(
-                                                                      6,
-                                                                      (secondIndex) {
-                                                                        return Padding(
-                                                                          padding: const EdgeInsets.symmetric(horizontal: 18),
-                                                                          child: Row(
-                                                                            children: [
-                                                                              const Text(
-                                                                                '•',
-                                                                                style: TextStyle(
-                                                                                  fontSize: 24,
-                                                                                  fontWeight: FontWeight.bold,
-                                                                                ),
-                                                                              ),
-                                                                              const SizedBox(width: 10),
-                                                                              Text(
-                                                                                secondIndex == 0
-                                                                                    ? 'Category Name: ${items[index]['category_name']}'
-                                                                                    : secondIndex == 1
-                                                                                        ? 'Size Name: ${items[index]['size_name']}'
-                                                                                        : secondIndex == 2
-                                                                                            ? 'Weight: ${items[index]['weight']}'
-                                                                                            : secondIndex == 3
-                                                                                                ? 'Unit: ${items[index]['unit']}'
-                                                                                                : secondIndex == 4
-                                                                                                    ? 'Customization Details: ${items[index]['customization_details']}'
-                                                                                                    : 'Choice Details: ${items[index]['choice_details']}',
-                                                                                style: const TextStyle(
-                                                                                  fontSize: 14,
-                                                                                  fontWeight: FontWeight.w500,
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        );
-                                                                      },
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                Positioned(
-                                                                  right: 10,
-                                                                  top: 15,
-                                                                  child: Container(
-                                                                    width: 80,
-                                                                    alignment: Alignment.centerRight,
-                                                                    decoration: const BoxDecoration(
-                                                                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                                                                      color: Colors.red,
-                                                                    ),
-                                                                    padding: const EdgeInsets.symmetric(vertical: 4),
-                                                                    child: Center(
-                                                                      child: Text(
-                                                                        items[index]['item_status'],
-                                                                        style: const TextStyle(
-                                                                          color: Colors.white,
-                                                                          fontWeight: FontWeight.w500,
-                                                                          fontSize: 15,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                )
-                                                              ],
-                                                            ),
-                                                            Container(
-                                                              height: 1,
-                                                              width: double.infinity,
-                                                              color: Colors.grey,
-                                                            ),
-                                                          ],
-                                                        );
-                                                      },
-                                                    ),
-                                                  ),
                                                 ],
                                               ),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 160,
-                                        height: 35,
-                                        margin: const EdgeInsets.only(top: 10, bottom: 20),
-                                        decoration: const BoxDecoration(
-                                          borderRadius: BorderRadius.all(Radius.circular(2.5)),
-                                          color: Colors.grey,
-                                        ),
-                                        child: const Center(
-                                          child: Text(
-                                            'Pending',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                            ),
+                                            ],
                                           ),
                                         ),
-                                      ),
+                                      )
                                     ],
                                   ),
-                                )
-                              ],
-                            )
-                          : const SizedBox(height: 100, width: 100, child: Center(child: CircularProgressIndicator())),
-                    ],
-                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        )
+                      : const Center(child: SizedBox(height: 100, width: 100, child: Center(child: CircularProgressIndicator()))),
                 ),
               )
             ],
